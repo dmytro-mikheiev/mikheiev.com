@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="description" content="Turning unstructured documents into explorable maps with RAG and Databricks, with lessons on extraction, geocoding, and data reliability.">
+    <meta name="theme-color" content="#030100">
+    <link rel="canonical" href="https://mikheiev.com/blog/turning-documents-into-maps-with-rag-and-databricks/">
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../styles.css?v=20260914-blog2">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mikheiev.com/blog/turning-documents-into-maps-with-rag-and-databricks/">
+    <meta property="og:title" content="Turning Documents Into Maps with RAG and Databricks">
+    <meta property="og:description" content="Turning unstructured documents into explorable maps with RAG and Databricks, with lessons on extraction, geocoding, and data reliability.">
+    <meta property="og:image" content="https://pub-175dc125eac043698a7b8f22abca3acb.r2.dev/blog/article5/0.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Turning Documents Into Maps with RAG and Databricks | Dima Mikheiev</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="top-line" aria-label="Professional proof">
+      <div class="container top-line__inner">
+        <p>Available as AI Engineer &amp; AI Solutions Architect</p>
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="/" aria-label="Dima Mikheiev home">
+          <span class="brand__mark" aria-hidden="true">DM</span>
+          <span class="brand__text">Dima Mikheiev</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="/#work">Work</a>
+          <a href="/#about">About</a>
+          <a href="/#blog">Blog</a>
+          <a class="nav-cta" href="https://calendly.com/dima-mikheiev" target="_blank" rel="noopener noreferrer">Book a Call</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <section class="article-hero" aria-labelledby="article-title">
+        <div class="container article-hero__inner">
+          <a class="back-link" href="/"><span class="back-link__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" focusable="false"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg></span><span>Back to home</span></a>
+          <p class="eyebrow">Blog</p>
+          <h1 id="article-title">Turning Documents Into Maps with RAG and Databricks</h1>
+        </div>
+      </section>
+      <section class="section article-section">
+        <article class="container article-content">
+          <figure>
+            <img src="https://pub-175dc125eac043698a7b8f22abca3acb.r2.dev/blog/article5/1.png" alt="Turning unstructured documents into explorable maps with RAG and Databricks." loading="eager" decoding="async">
+          </figure>
+          <p class="article-lead">Imagine having hundreds of books, reports, research papers, or internal documents containing information about places, but no structured dataset to analyze.</p>
+          <p>I wanted to see if RAG could find that information, extract it, and turn it into geographic data automatically, and then use Databricks to analyze and visualize the results.</p>
+          <p>For my experiment, I chose something I’m interested in: the history of AI.</p>
+          <p>I gave the system historical books and asked it to find where important AI breakthroughs happened.</p>
+          <p>In simple terms:</p>
+          <p>Books → RAG → structured data → Databricks → map</p>
+          <p>The result became the AI Breakthroughs Atlas — but the same approach could be applied to many other collections of unstructured documents.</p>
+          <h2>Building the RAG pipeline</h2>
+          <p>Giving an LLM entire books and asking it to find everything interesting isn’t a great approach.</p>
+          <p>Instead, I built a RAG pipeline.</p>
+          <figure>
+            <img src="https://pub-175dc125eac043698a7b8f22abca3acb.r2.dev/blog/article5/2.png" alt="The RAG pipeline: from book chunks and semantic search to structured, geolocated data." loading="lazy" decoding="async">
+          </figure>
+          <p>The flow looked like this:</p>
+          <p>Books → Dense Embeddings → Vector Database → Classifier → Extractor → Location to Coordinates</p>
+          <p>First, I split the books into smaller chunks and converted them into dense embeddings — numerical representations of their meaning.</p>
+          <p>I stored those embeddings in a vector database, which allowed the system to retrieve passages based on meaning rather than exact keywords.</p>
+          <p>The retrieved passages then went through an AI classifier.</p>
+          <p>Its job was to answer a simple question: Does this passage actually describe an AI breakthrough worth keeping?</p>
+          <p>I experimented with different models for this step and tried Jev (TypeSafe&#x27;s model) before switching to OpenAI&#x27;s GPT Luna, which gave me better results for classification.</p>
+          <p>The passages that passed the classifier were sent to an extractor. It converted the text into structured fields such as the year, breakthrough, location, and supporting quote.</p>
+          <p>Finally, the location was converted into latitude and longitude using GeoNames.</p>
+          <p>At this point, hundreds of pages of unstructured text had become a dataset I could actually analyze.</p>
+          <h2>From RAG to Databricks</h2>
+          <p>For the final step, I loaded the extracted data into Databricks.</p>
+          <p>I used Databricks to explore the dataset, analyze the results, and plot the extracted AI breakthroughs geographically.</p>
+          <figure>
+            <img src="https://pub-175dc125eac043698a7b8f22abca3acb.r2.dev/blog/article5/3.png" alt="The final dataset visualized in Databricks, showing where AI breakthroughs happened." loading="lazy" decoding="async">
+          </figure>
+          <p>This became the AI Breakthroughs Atlas - a visual way to explore where breakthroughs mentioned across the books happened.</p>
+          <p>But the project also exposed something more interesting.</p>
+          <p>Getting an LLM to return structured data is relatively easy.</p>
+          <p>Getting reliable structured data is much harder.</p>
+          <p>A classifier can make the wrong decision. A location can be ambiguous. Geocoding can choose the wrong place. And perfectly valid JSON can still contain incorrect information.</p>
+          <p>That made evaluation and validation just as important as the RAG pipeline itself.</p>
+          <h2>What I learned</h2>
+          <p>I started this project thinking mostly about RAG.</p>
+          <p>I finished it thinking much more about data reliability.</p>
+          <p>LLMs are very good at finding structure inside information that was never designed to be structured.</p>
+          <p>They can turn books and documents into data that we can search, analyze in platforms like Databricks, and eventually visualize.</p>
+          <p>But extraction is only the first step.</p>
+          <p>The more interesting engineering question is:</p>
+          <p>How do we know which AI-generated data we can actually trust?</p>
+          <p>The map is the visible result.</p>
+          <p>The real engineering happens between “AI found something” and “we can trust it enough to use it.”</p>
+          <hr>
+          <p>The full project, including the source code and implementation, is available on GitHub: <a href="https://github.com/dmytro-mikheiev/ai-breakthrough-atlas" target="_blank" rel="noopener noreferrer">https://github.com/dmytro-mikheiev/ai-breakthrough-atlas</a></p>
+          <hr>
+          <p class="article-signoff"><strong>👋 I’m Dima - AI Solutions Architect. I help teams turn their data into AI systems. You can see more of my work at <a href="https://mikheiev.com/">mikheiev.com</a></strong></p>
+        </article>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <div class="footer-links" aria-label="Contact links">
+          <a href="mailto:dima@mikheiev.com" target="_blank" rel="noopener noreferrer" aria-label="Email Dima Mikheiev"><span aria-hidden="true">@</span>dima@mikheiev.com</a>
+          <a href="https://www.linkedin.com/in/mikheev-dmitry" target="_blank" rel="noopener noreferrer" aria-label="Connect with Dima Mikheiev on LinkedIn"><span aria-hidden="true">in</span>Connect on LinkedIn</a>
+          <a href="https://www.threads.com/@dimamikheiev" target="_blank" rel="noopener noreferrer" aria-label="Follow Dima Mikheiev on Threads"><span aria-hidden="true">th</span>Follow on Threads</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -8,6 +8,7 @@
 
 ## Blog
 
+- [Turning Documents Into Maps with RAG and Databricks](https://mikheiev.com/blog/turning-documents-into-maps-with-rag-and-databricks/): article about turning books into geographic data with RAG, GeoNames, and Databricks, and validating AI-generated data.
 - [Everyone Wants an AI Prediction. Who Checks the Data Behind It?](https://mikheiev.com/blog/everyone-wants-an-ai-prediction-who-checks-the-data-behind-it/): article about an AWS car price prediction system, nearest-neighbor matching, data quality, and showing the evidence behind predictions.
 - [AI Was Supposed to Make Work Easier](https://mikheiev.com/blog/ai-was-supposed-to-make-work-easier/): article about AI video production workflows, using Notion as a single interface, and keeping specialized tools behind the scenes.
 - [I Built an AI Content System for a Beauty Brand](https://mikheiev.com/blog/AI-Content-System-for-a-Beauty-Brand/): article about building an AI content system for a beauty and wellness brand, with lessons on team adoption, workflow design, brand context, and where human review still matters.
