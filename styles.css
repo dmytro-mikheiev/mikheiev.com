@@ -4,6 +4,8 @@
   --beige: #F4E1CC;
   --red: #D20A0E;
   --brown: #995429;
+  --whatsapp: #25D366;
+  --whatsapp-dark: #075E54;
   --line: rgba(3, 1, 0, 0.16);
   --line-strong: rgba(3, 1, 0, 0.28);
 }
@@ -173,8 +175,13 @@ h3 {
 }
 
 .nav-cta {
-  border-bottom: 2px solid var(--red);
-  color: var(--red);
+  border-bottom: 2px solid var(--whatsapp);
+  color: var(--whatsapp-dark);
+}
+
+.nav-cta:hover {
+  border-color: var(--whatsapp-dark);
+  color: var(--whatsapp-dark);
 }
 
 .hero {
@@ -229,14 +236,14 @@ h3 {
 }
 
 .button--primary {
-  background: var(--red);
-  border-color: var(--red);
-  color: var(--white);
+  background: var(--whatsapp);
+  border-color: var(--whatsapp);
+  color: var(--black);
 }
 
 .button--primary:hover {
-  background: var(--black);
-  border-color: var(--black);
+  background: var(--whatsapp-dark);
+  border-color: var(--whatsapp-dark);
   color: var(--white);
 }
 
