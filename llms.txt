@@ -4,6 +4,8 @@
 
 ## Site
 
+- [Personal Proof of Concept](https://mikheiev.com/poc/): Dima personally builds one narrowly scoped working proof of concept for €350 within two business days after upfront payment and receipt of required access/data. Free initial consultation, written scope and success criteria, testing, source code where applicable, handover and final consultation.
+
 - [Home](https://mikheiev.com/): overview of Dima Mikheiev, services, selected work, proof points, portfolio, and contact links.
 
 ## Blog
