@@ -8,16 +8,8 @@
 .poc-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 25px 0; }
 .poc-header .brand { font-size: 1.2rem; line-height: 1.2; }
 .poc-header .brand small { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; margin-top: 6px; font-weight: 600; }
-.poc-desktop-nav { display: flex; gap: 30px; font-size: 1rem; font-weight: 650; }
-.poc-desktop-nav a { text-decoration: none; padding: 12px 0; }
-.poc-menu { display: none; position: relative; }
-.poc-menu summary { display: grid; place-items: center; list-style: none; cursor: pointer; width: 48px; height: 48px; background: #edf3ff; border-radius: 50%; color: var(--blue); font-size: 1.5rem; }
-.poc-menu summary::-webkit-details-marker { display: none; }
-.poc-menu summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
-.poc-menu nav { position: absolute; right: 0; top: 58px; width: 240px; padding: 12px; border: 1px solid #d4e2ff; background: #fff; box-shadow: 0 15px 40px #0716381a; border-radius: 16px; }
-.poc-menu a { display: block; padding: 12px; text-decoration: none; }
 .poc-hero { overflow: hidden; }
-.poc-hero-inner { position: relative; padding: 58px 0 55px; }
+.poc-hero-inner { position: relative; padding: 58px 0 90px; }
 .poc-hero-art { position: absolute; width: 900px; max-width: none; height: auto; top: 20px; right: -100px; z-index: 0; pointer-events: none; }
 .poc-hero-copy { position: relative; z-index: 1; max-width: 760px; }
 .poc-note { font-family: 'Segoe Print','Bradley Hand', cursive; font-style: italic; color: var(--muted); font-size: 1.5rem; line-height: 1.3; width: fit-content; transform: rotate(-4deg); margin-bottom: 38px; }
@@ -25,12 +17,13 @@
 .poc-page h1 { font-size: clamp(2.6rem,5.4vw,4.5rem); line-height: 1.04; max-width: 810px; margin-bottom: 25px; }
 .poc-lead { font-size: 1.625rem; line-height: 1.45; max-width: 660px; background: #ffffffd9; }
 .poc-page mark { color: inherit; background: #dce8ff; padding: 0 .16em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-.poc-facts { position: relative; display: grid; grid-template-columns: repeat(3,1fr); max-width: 790px; margin-top: 36px; }
-.poc-facts div { border-left: 1px solid #c7d8fa; padding: 0 24px; }
-.poc-facts div:first-child { border: 0; padding-left: 0; }
-.poc-facts dt { font-weight: 750; font-size: 1.2rem; }
-.poc-facts dd { margin: 4px 0 0; font-size: 1rem; color: var(--muted); }
-.poc-timing { position: relative; max-width: 710px; font-size: 1rem; color: var(--muted); margin-top: 22px; }
+.poc-facts { position: relative; display: grid; grid-template-columns: 170px minmax(0,1fr); gap: 24px 32px; align-items: center; max-width: 660px; margin-top: 48px; padding: 28px; border: 1px solid #dce6fb; border-radius: 20px; background: linear-gradient(115deg, #f4f8ff, #fff); }
+.poc-facts > div { min-width: 0; }
+.poc-facts p { display: flex; align-items: center; gap: 12px; font-weight: 750; font-size: 1.125rem; line-height: 1.3; }
+.poc-fact-icon { display: block; width: 26px; height: 26px; color: var(--blue); flex: 0 0 auto; }
+.poc-facts .poc-fact-price { grid-row: 1 / 3; align-self: stretch; display: flex; flex-direction: column; justify-content: center; padding-right: 28px; border-right: 1px solid #dce6fb; }
+.poc-fact-price p { display: block; font-size: 3.25rem; line-height: 1.1; letter-spacing: -.045em; color: var(--blue); }
+.poc-hero .poc-actions { margin-top: 48px; }
 .poc-actions { position: relative; display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
 .poc-page .button { min-height: 54px; padding: 14px 24px; border-radius: 30px; font-size: 1.0625rem; font-weight: 650; gap: 12px; }
 .poc-linkedin { background: #0753d9; border-color: #0753d9; color: #fff; }
@@ -78,21 +71,25 @@
     8px 14px 19px -8px rgba(15, 31, 55, .19),
     inset 0 -1px 1px rgba(15, 31, 55, .05);
 }
+/* Fine grain and longer fibers catch the same upper-left light as the sheet. */
 .poc-paper-sheet::after {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  opacity: .13;
+  opacity: .14;
+  mix-blend-mode: multiply;
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%2380858a' filter='url(%23grain)' opacity='.5' d='M0 0h160v160H0z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22180%22%20height%3D%22180%22%20viewBox%3D%220%200%20180%20180%22%3E%3Cfilter%20id%3D%22paper%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.7%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22%20result%3D%22grain%22%2F%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.08%20.55%22%20numOctaves%3D%222%22%20stitchTiles%3D%22stitch%22%20result%3D%22fibers%22%2F%3E%3CfeComposite%20in%3D%22grain%22%20in2%3D%22fibers%22%20operator%3D%22arithmetic%22%20k2%3D%22.75%22%20k3%3D%22.25%22%2F%3E%3CfeDiffuseLighting%20surfaceScale%3D%221.8%22%20diffuseConstant%3D%221%22%20lighting-color%3D%22white%22%3E%3CfeDistantLight%20azimuth%3D%22225%22%20elevation%3D%2255%22%2F%3E%3C%2FfeDiffuseLighting%3E%3C%2Ffilter%3E%3Cpath%20fill%3D%22white%22%20filter%3D%22url%28%23paper%29%22%20d%3D%22M0%200h180v180H0z%22%2F%3E%3C%2Fsvg%3E");
+  background-size: 180px 180px;
 }
 .poc-story-art { width: 100%; height: auto; }
 .poc-intro { max-width: 730px; color: var(--muted); font-size: 1.25rem; }
 .poc-examples { display: grid; grid-template-columns: repeat(3,1fr); gap: 40px; margin-top: 38px; }
 .poc-examples h3 { margin: 18px 0 14px; font-size: 1.65rem; }
 .poc-examples p { color: var(--muted); }
-.poc-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; color: var(--blue); font-size: 1.8rem; background: #edf3ff; }
+.poc-icon { display: grid; place-items: center; width: 76px; height: 76px; border-radius: 20px; color: var(--blue); background: #edf3ff; }
+.poc-icon svg { display: block; width: 44px; height: 44px; }
 .poc-scope-note { color: var(--muted); font-size: 1rem; margin-top: 28px; max-width: 790px; }
 .poc-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 34px; list-style: none; padding: 0; margin-top: 40px; }
 .poc-step-icon { display: grid; place-items: center; height: 48px; width: 48px; border-radius: 14px; background: #dce8ff; color: var(--blue); font-weight: 750; }
@@ -134,18 +131,17 @@
  .poc-header .brand { font-size: 1rem; gap: 9px; }
  .poc-header .brand small { font-size: .6rem; }
  .poc-header .brand__mark { width: 36px; height: 36px; }
- .poc-desktop-nav { display: none; }
- .poc-menu { display: block; }
- .poc-hero-inner { padding-top: 30px; padding-bottom: 40px; }
+ .poc-hero-inner { padding-top: 30px; padding-bottom: 76px; }
  .poc-hero-art { width: 570px; top: 0; right: -120px; opacity: 1; }
  .poc-note { font-size: 1.15rem; margin-bottom: 85px; }
  .poc-page h1 { font-size: clamp(2.25rem,7.8vw,3rem); background: linear-gradient(90deg,#fffffffa 55%,#ffffffb3); line-height: 1.08; }
  .poc-lead { font-size: 1.25rem; }
- .poc-facts { margin-top: 27px; gap: 8px; }
- .poc-facts div { padding: 0 8px; }
- .poc-facts dt { font-size: .95rem; line-height: 1.3; }
- .poc-facts dd { font-size: .9rem; }
- .poc-timing { font-size: .95rem; }
+ .poc-facts { grid-template-columns: minmax(92px,.85fr) minmax(0,1.5fr); margin-top: 36px; gap: 22px 18px; padding: 24px 18px; border-radius: 16px; }
+ .poc-facts p { font-size: 1rem; gap: 10px; }
+ .poc-fact-icon { width: 22px; height: 22px; }
+ .poc-facts .poc-fact-price { padding-right: 16px; }
+ .poc-fact-price p { font-size: 2.5rem; }
+ .poc-hero .poc-actions { margin-top: 40px; }
  .poc-actions { gap: 10px; }
  .poc-page .button { font-size: 1.0625rem; padding-left: 12px; padding-right: 12px; width: 100%; }
  .poc-section,.poc-story { padding: 50px 0; }

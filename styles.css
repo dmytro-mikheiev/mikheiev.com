@@ -1144,3 +1144,36 @@ h3 {
 
 .nav-cta--poc, .nav-cta--poc:hover { color: var(--red); border-color: var(--red); }
 .hero__portrait img { aspect-ratio: 4 / 5; object-position: center 35%; border: 1px solid var(--line-strong); border-radius: 12px; }
+
+/* Homepage hero follows the offer page's editorial Budapest composition. */
+.home-hero { overflow: hidden; }
+.home-hero .hero__grid { position: relative; display: block; min-height: 570px; padding: 88px 0 76px; }
+.hero__city { position: absolute; top: 20px; right: -100px; width: 900px; max-width: none; height: auto; pointer-events: none; mask-image: linear-gradient(to right, transparent 0%, #000 47%); -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 47%); }
+.home-hero .hero__copy { position: relative; z-index: 1; max-width: 740px; gap: 28px; }
+.home-hero h1 { max-width: 620px; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(3.25rem, 6vw, 4.8rem); font-weight: 700; line-height: 1.04; letter-spacing: -.045em; background: linear-gradient(90deg, #ffffffed 45%, #ffffff00); }
+.home-hero .hero__lead { max-width: 620px; line-height: 1.45; background: #ffffffde; }
+.home-hero .button { border-radius: 30px; }
+@media (max-width: 920px) {
+ .home-hero .hero__grid { min-height: 0; padding: 70px 0; }
+ .hero__city { width: 850px; right: -170px; }
+ .home-hero .hero__copy { max-width: 660px; }
+}
+@media (max-width: 620px) {
+ .home-hero .hero__grid { padding: 210px 0 48px; }
+ .hero__city { width: 570px; top: -5px; right: -100px; mask-image: none; -webkit-mask-image: none; }
+ .home-hero .hero__copy { gap: 24px; }
+ .home-hero h1 { font-size: clamp(2.75rem, 10vw, 3.5rem); background: linear-gradient(90deg, #fffffffa 55%, #ffffffb3); }
+ .home-hero .hero__lead { font-size: 1.25rem; }
+}
+
+/* Shared hamburger navigation on desktop and mobile. */
+.site-header { position: relative; z-index: 50; }
+.site-header .site-header__inner { flex-direction: row; align-items: center; }
+.site-menu { position: relative; flex: 0 0 auto; margin-left: auto; }
+.site-menu summary { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: #edf3ff; color: var(--red); list-style: none; cursor: pointer; }
+.site-menu summary::-webkit-details-marker { display: none; }
+.site-menu summary:hover, .site-menu[open] summary { background: #dce8ff; }
+.site-menu summary:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
+.site-menu nav { position: absolute; top: calc(100% + 12px); right: 0; width: min(280px, calc(100vw - 32px)); padding: 10px; border: 1px solid #d4e2ff; border-radius: 16px; background: #fff; box-shadow: 0 15px 40px rgba(7, 22, 56, .14); color: var(--black); font-size: 1rem; font-weight: 600; line-height: 1.4; }
+.site-menu nav a { display: block; min-height: 46px; padding: 12px 14px; border-radius: 8px; text-decoration: none; }
+.site-menu nav a:hover, .site-menu nav a[aria-current="page"] { background: #edf3ff; color: var(--red); }
